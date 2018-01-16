@@ -27,12 +27,19 @@
       (if @logged-in (secretary/dispatch! "/home")
                      (secretary/dispatch! "/login"))))
 
+  (defroute "/home" []
+    (re-frame/dispatch [::events/set-active-panel :home-panel]))
+
   (defroute "/about" []
     (re-frame/dispatch [::events/set-active-panel :about-panel]))
 
   (defroute "/login" []
     (re-frame/dispatch [::events/set-active-panel :login-panel]))
 
+;; Quick and dirty history configuration.
+  (let [h (History.)]
+    (goog.events/listen h EventType/NAVIGATE #(secretary/dispatch! (.-token %)))
+    (doto h (.setEnabled true)))
 
   ;; --------------------
   (hook-browser-navigation!))

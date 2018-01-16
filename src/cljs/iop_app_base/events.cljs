@@ -1,5 +1,6 @@
 (ns iop-app-base.events
-  (:require [re-frame.core :as re-frame]
+  (:require [secretary.core :as secretary]
+            [re-frame.core :as re-frame]
             [iop-app-base.db :as db]))
 
 (re-frame/reg-event-db
@@ -11,3 +12,9 @@
  ::set-active-panel
  (fn [db [_ active-panel]]
    (assoc db :active-panel active-panel)))
+
+(re-frame/reg-event-db
+  ::login
+  (fn [db]
+    (do (secretary/dispatch! "/home"))
+    (assoc db :logged-in true)))
