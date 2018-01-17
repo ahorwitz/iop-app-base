@@ -26,7 +26,7 @@
     [sa/GridColumn {:style {:max-width 450}}
       [sa/Header {:as "h2" :color "teal" :text-align "center"}
         [sa/Image {:src "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAViAAAAJDU3ZmQwN2Q1LWQyNGUtNDIyNS04NGJhLWJhMmM1ODllY2E5Yg.png"}]
-        "Welcome"] 
+        "Internet of Plants"] 
       [sa/Form {:size "large"}
         [sa/Segment {:stacked true}
           [sa/FormInput {:fluid true :icon "user" :icon-position "left" :placeholder "email address"}]

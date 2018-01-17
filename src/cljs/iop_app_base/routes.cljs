@@ -18,16 +18,24 @@
        (secretary/dispatch! (.-token event))))
     (.setEnabled true)))
 
+;; Just for updating URL after logging in
+;; Might be better way to do this through secretary
+(defn set-hash [route]
+  (set! (.-location js/window) (+ (.-location js/window) route)))
+
 (defn app-routes []
   (secretary/set-config! :prefix "#")
   ;; --------------------
   ;; define routes here
   (defroute "/" []
     (let [logged-in (re-frame/subscribe [::subs/logged-in])]
-      (if @logged-in (secretary/dispatch! "/home")
-                     (secretary/dispatch! "/login"))))
+      (if @logged-in (do (set-hash "#home")
+                         (secretary/dispatch! "/home"))
+                     (do (set-hash "#login")
+                         (secretary/dispatch! "/login")))))
 
   (defroute "/home" []
+    (set! (.-hash (.-location js/document)) "#/home")
     (re-frame/dispatch [::events/set-active-panel :home-panel]))
 
   (defroute "/about" []
