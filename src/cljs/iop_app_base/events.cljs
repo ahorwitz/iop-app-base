@@ -18,3 +18,8 @@
   (fn [db]
     (do (secretary/dispatch! "/home"))
     (assoc db :logged-in true)))
+
+(re-frame/reg-event-db
+ ::toggle-sidebar
+ (fn [db]
+   (assoc db :sidebar-open (not (:sidebar-open db)))))

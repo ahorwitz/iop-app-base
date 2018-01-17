@@ -15,3 +15,8 @@
   ::logged-in
   (fn [db]
     (:logged-in db)))
+
+(re-frame/reg-sub
+ ::sidebar-open
+ (fn [db]
+   (:sidebar-open db)))

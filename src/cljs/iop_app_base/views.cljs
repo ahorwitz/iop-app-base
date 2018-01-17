@@ -8,14 +8,33 @@
 ;; home
 
 (defn home-panel []
-  (let [name (re-frame/subscribe [::subs/name])]
+  (let [sidebar-open (re-frame/subscribe [::subs/sidebar-open])]
     [:div
       [sa/Menu {:fixed "top" :inverted true :icon true}
-        [sa/Button {:icon "bars" :color "black"}]
+        [sa/Button {:icon "bars" :color "black" :on-click #(re-frame/dispatch [::events/toggle-sidebar] [])}]
         [sa/Container
-          [sa/MenuItem {:as "a" :header true}
-            "jkjk"]
-          [sa/MenuItem {:as "a"} "Home"]]]]))
+         [sa/MenuItem {:as "a" :header true}
+          "Some Item"]
+         [sa/MenuItem {:as "a"}
+          "Home"]]]
+      [sa/SidebarPushable
+       [sa/Sidebar {:animation "slide along"
+                    :visible @sidebar-open
+                    :width "thin"
+                    :icon "labeled"}
+
+
+           [sa/MenuItem {:name "home" :style { :margin-top "40px"}}
+            [sa/Button {:fluid true} "Loo"]]
+
+           [sa/MenuItem {:name "home"}
+            [sa/Button {:fluid true} "Loo"]]]
+
+       [sa/SidebarPusher
+         [sa/Segment {:basic true}
+           [sa/Container {:style {:margin "100px"}}
+            "woof!"]]]]]))
+
 
 ;; about
 (defn about-panel []
