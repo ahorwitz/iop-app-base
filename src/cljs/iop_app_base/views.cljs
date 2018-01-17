@@ -13,27 +13,26 @@
       [sa/Menu {:fixed "top" :inverted true :icon true}
         [sa/Button {:icon "bars" :color "black" :on-click #(re-frame/dispatch [::events/toggle-sidebar] [])}]
         [sa/Container
-         [sa/MenuItem {:as "a" :header true}
-          "Some Item"]
+         [sa/MenuItem {:as "a"}
+          [sa/Icon {:name "leaf" :style {:padding-right "20px"}}]
+          "Internet of Plants"]
          [sa/MenuItem {:as "a"}
           "Home"]]]
-      [sa/SidebarPushable
+      [sa/SidebarPushable :style {:box-shadow "0px"}
        [sa/Sidebar {:animation "slide along"
                     :visible @sidebar-open
                     :width "thin"
+                    :style {:box-shadow "0px"}
                     :icon "labeled"}
-
-
-           [sa/MenuItem {:name "home" :style { :margin-top "40px"}}
-            [sa/Button {:fluid true} "Loo"]]
-
-           [sa/MenuItem {:name "home"}
-            [sa/Button {:fluid true} "Loo"]]]
-
+           [sa/Menu {:fluid true :vertical true  :style {:height "500px"}}
+            [sa/MenuItem {:name "Dashboard" :link true :style { :margin-top "40px" :text-align "center"}}]
+            [sa/MenuItem {:name "Register Device" :href "google.com" :style {:text-align "center"}}]
+            [sa/MenuItem {:name "Browse Recipes" :href "google.com" :style {:text-align "center"}}]
+            [sa/MenuItem {:name "Settings" :href "google.com" :style {:text-align "center"}}]]]
        [sa/SidebarPusher
          [sa/Segment {:basic true}
            [sa/Container {:style {:margin "100px"}}
-            "woof!"]]]]]))
+            "..."]]]]]))
 
 
 ;; about
