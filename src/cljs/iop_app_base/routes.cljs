@@ -8,7 +8,7 @@
             [iop-app-base.events :as events]
             [iop-app-base.subs :as subs]))
 
-            
+
 
 (defn hook-browser-navigation! []
   (doto (History.)
@@ -20,8 +20,9 @@
 
 ;; Just for updating URL after logging in
 ;; Might be better way to do this through secretary
-(defn set-hash [route]
-  (set! (.-location js/window) (+ (.-location js/window) route)))
+(defn set-hash
+  [route]
+  (set! (.-hash (.-location js/document)) route))
 
 (defn app-routes []
   (secretary/set-config! :prefix "#")
@@ -35,7 +36,7 @@
                          (secretary/dispatch! "/login")))))
 
   (defroute "/home" []
-    (set! (.-hash (.-location js/document)) "#/home")
+    (set-hash "#home")
     (re-frame/dispatch [::events/set-active-panel :home-panel]))
 
   (defroute "/about" []
