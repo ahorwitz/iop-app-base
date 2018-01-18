@@ -45,6 +45,11 @@
   (defroute "/login" []
     (re-frame/dispatch [::events/set-active-panel :login-panel]))
 
+  (defroute "/browse-recipes" []
+    (re-frame/dispatch [::events/set-sidebar-status false])
+    (re-frame/dispatch [::events/set-active-panel :login-panel]))
+
+
 ;; Quick and dirty history configuration.
   (let [h (History.)]
     (goog.events/listen h EventType/NAVIGATE #(secretary/dispatch! (.-token %)))

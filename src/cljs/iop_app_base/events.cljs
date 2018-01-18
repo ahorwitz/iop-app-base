@@ -23,3 +23,8 @@
  ::toggle-sidebar
  (fn [db]
    (assoc db :sidebar-open (not (:sidebar-open db)))))
+
+(re-frame/reg-event-db
+ ::set-sidebar-status
+ (fn [db [_ bool]]
+   (assoc db :sidebar-open bool)))

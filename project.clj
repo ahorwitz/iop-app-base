@@ -56,7 +56,7 @@
                     :preloads             [devtools.preload
                                            re-frisk.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}}}
-                    
+
 
     {:id           "min"
      :source-paths ["src/cljs"]
@@ -73,7 +73,7 @@
                     :output-to     "resources/public/js/compiled/test.js"
                     :output-dir    "resources/public/js/compiled/test/out"
                     :optimizations :none}}]}
-    
+
 
   :main iop-app-base.server
 
@@ -82,4 +82,3 @@
   :uberjar-name "iop-app-base.jar"
 
   :prep-tasks [["cljsbuild" "once" "min"]["garden" "once"] "compile"])
-  

@@ -24,10 +24,10 @@
                     :width "thin"
                     :style {:box-shadow "0px"}
                     :icon "labeled"}
-           [sa/Menu {:fluid true :vertical true  :style {:height "500px"}}
+           [sa/Menu {:fluid true :vertical true}
             [sa/MenuItem {:name "Dashboard" :link true :style { :margin-top "40px" :text-align "center"}}]
             [sa/MenuItem {:name "Register Device" :href "google.com" :style {:text-align "center"}}]
-            [sa/MenuItem {:name "Browse Recipes" :href "google.com" :style {:text-align "center"}}]
+            [sa/MenuItem {:name "Browse Recipes" :href "#browse-recipes" :style {:text-align "center"}}]
             [sa/MenuItem {:name "Settings" :href "google.com" :style {:text-align "center"}}]]]
        [sa/SidebarPusher
          [sa/Segment {:basic true}
